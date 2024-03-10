@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+</head>
+<style>
+    .ans {
+        width: 200px;
+        height:20px;
+        border: 2px solid black;
+    }
+</style>
+<body>
+    <h1>Guess Number</h1>
+        <input class="ans" type="text" placeholder="Number Between 1-100" name="hello">
+        <input class="sub" type="submit" >
+    <div class="c"></div>
+    <script>
+        let d = parseInt(Math.random() * 100 + 1);
+        let ans = document.body.querySelector(".ans");
+        let sub = document.body.querySelector(".sub");
+        let c = document.body.querySelector(".c");
+        console.log(d);
+        let count=1;
+        let fale=0;
+        sub.addEventListener("click", () => {
+            fale++;
+            if(fale<=10){
+                if (ans.value == d) {
+                c.innerText="yes it was correct i.e "+d;
+            }
+            else if (ans.value > d) {
+                c.innerText="try again choose smaller "+count+" times you fail";
+                count++
+            }
+            else {
+                c.innerText="try again choose larger "+count+" times you fail";
+                count++
+            }
+            }
+            else{
+                c.innerText="it was "+d+" You Loose";
+            }
+          
+        })
+    </script>
+</body>
+
+</html>
