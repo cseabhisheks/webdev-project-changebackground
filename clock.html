@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+</head>
+<style>
+    *{
+        background-image: url(https://cdn.pixabay.com/photo/2018/05/28/12/09/time-3435879_1280.jpg);
+    }
+    h1{
+        font-size: 60px;
+    }
+    .clock {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+        width: 50vw;
+        height:70vh;
+        border:2px solid black;
+    }
+
+    .display {
+        width: 500px;
+        height:500px;
+        border-radius: 100%;
+        border: 2px solid black;
+        background-color: yellow;
+        font-size: 80px;
+        display: flex;
+        justify-content:center;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+</style>
+
+<body>
+    <h1>Clock</h1>
+    <div class="clock">
+        <div class="display"></div>
+    </div>
+
+    <script>
+        let dis=document.body.querySelector(".display");
+        setInterval(()=>{
+            let d=new Date();//whole date,time etc
+            dis.innerText=d.toLocaleTimeString();//only time
+        },1000);
+
+    </script>
+
+</body>
+
+</html>
