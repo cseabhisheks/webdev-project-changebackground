@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <title>BMI CALC</title>
+    <link rel="shortcut icon"
+        href="https://th.bing.com/th/id/OIP.Os3iCAAJ3mbTSi_bDrZY-wAAAA?w=474&h=316&rs=1&pid=ImgDetMain">
+</head>
+<style>
+    * {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+
+    .container {
+        background-image: url("https://cdn.pixabay.com/photo/2023/01/08/12/50/weight-loss-7705107_1280.jpg");
+        background-size: cover;
+        width: 500px;
+        height: 500px;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 20px 20px 0px 20px;
+        background-color: orange
+    }
+
+    input[type="search"] {
+        padding: 0px 23px 0px 23px;
+        height: 40px;
+        border-radius: 20px;
+        border: 2px solid black;
+    }
+
+    .row{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .mandatory {
+        padding: 0px 0px 0px 24px;
+        font-size: larger;
+        margin: 12px 0px 12px 0px;
+    }
+
+    .ans {
+        box-sizing: border-box;
+        width: 490px;
+        height: 100px;
+        border: 2px solid black;
+        background-color: white;
+        padding: 23px;
+        font-weight: 900;
+    }
+</style>
+
+<body>
+    <h1>BMI : Calculator</h1>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="height">
+                <div class="mandatory">Height( in m )*</div>
+                <input id="height"  type="search" placeholder="  Enter Your Height">
+            </div>
+            <div class="weight">
+                <div class="mandatory">Weight(in kg) *</div>
+                <input id="weight" type="search" placeholder="  Enter Your Weight">
+            </div>
+        </div>
+        <div class="submit">
+            <input style="margin-top: 22px;width: 100px;border-radius: 12px;border: 2px solid black;" type="submit" value="Submit">
+            <hr>
+        </div>
+
+
+        <div class="ouput">
+            <div style="font-size: 42px;" class="h">Result</div>
+            <div class="ans"></div>
+        </div>
+
+
+    </div>
+    <script>
+
+
+        let submit=document.body.querySelector(".submit");
+        let ans=document.body.querySelector(".ans");
+        submit.addEventListener("click",()=>{
+        let height=parseFloat(document.body.querySelector("#height").value);
+        let weight=parseFloat(document.body.querySelector("#weight").value);
+        //isNaN() : TO CHECK WHETHER A GIVEN VALUE IS NUMBER OR NOT
+        if (isNaN(height) || isNaN(weight)) {
+            console.log("Please enter valid numeric values for height and weight.");
+        }
+        else{
+            let r=(weight/(height*height)).toFixed(2);
+            let b=("BMI : "+r);
+            if(r<18.5){
+                ans.innerText="BMI : "+r+"kg/m2"+"\nyou are underweight"
+            }
+            else  if(r>25){
+                ans.innerText="BMI : "+r+"kg/m2"+"\nyou are overweight"
+            }
+            else{
+                ans.innerText="BMI : "+r+"kg/m2"+"\nyou are fit"
+            }
+        }
+
+        })
+
+    </script>
+</body>
+
+</html>
