@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"
+        href="https://www.wisediy.com/wp-content/uploads/sites/781/2015/11/Screen-Shot-2015-11-27-at-2.52.44-PM.png"
+        type="image/x-icon">
+    <title>TIC-TAC-TOE : Special (🦁 🐰) Edition</title>
+</head>
+<style>
+    body {
+        height: 700px;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .container {
+        border: 2px solid black;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    .r {
+        display: flex;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        display: flex;
+        font-size: 50px;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    .playertext {
+        width: 600px;
+        height: 100px;
+        border: 2px solid black;
+        display: flex;
+        font-size: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+        margin-top: 20px;
+    }
+
+    .rest {
+        font-size: 23px;
+    }
+</style>
+
+<body>
+    <h1>TIC-TAC-TOE : Special (🦁 🐰) Edition</h1>
+    <div class="bod">
+        <div class="container">
+            <h2>TIC-TAC-TOE</h2>
+            <div class="r">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="r">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="r">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+        </div>
+    </div>
+    <button class="rest" type="reset">Game Reset kar</button>
+    <div class="playertext">🐰:sher tu chal 😂</div>
+
+    <!-- javascript code -->
+    <script>
+        let box = document.body.querySelectorAll(".box");
+        let text = document.body.querySelector(".playertext");
+        let reset = document.body.querySelector(".rest");
+        let player = '🦁';
+        let count = 1;
+
+        const win = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [3, 4, 5], [2, 4, 6], [1, 4, 7], [2, 5, 8], [6, 7, 8]];
+        //reset button
+        reset.addEventListener("click", resetBoard);
+
+        //win pattern
+        function winner() {
+            for (let i of win) {
+                let one = box[i[0]].innerText;
+                let two = box[i[1]].innerText;
+                let three = box[i[2]].innerText;
+                if (one != '' && two != '' && three != '') {
+                    if (one == two && two == three) {
+                        let said = player;
+                        changeplayer();
+                        text.innerText = said + ":🥲, tu jeet gaya " + player;
+                        return true;
+                    }
+
+                }
+            }
+        }
+
+        //reset game
+        function resetBoard() {
+            box.forEach(element => {
+                element.innerText = '';
+            });
+            // player = '🦁';
+            text.innerText = "🐰:sher tu chal 😂";
+            count = 1;
+        }
+        // change player
+        function changeplayer() {
+            if (player == '🦁') {
+                player = '🐰';
+                text.innerText = "🦁:khargosh ab teri bari";
+            }
+            else {
+                player = '🦁';
+                text.innerText = "🐰:sher tu chal 😂"
+            }
+        }
+
+        box.forEach((element) => {
+            element.addEventListener("click", () => {
+
+                if (count != 10 && !winner()) {
+                    if (element.innerText == '') {
+                        element.innerText = player;
+                        changeplayer();
+                        count++;
+                        winner();
+                    }
+                }
+                else {
+                    text.innerText = "🐰:yaar game khatam ho gaya 🥲 ,to kha chalu";
+                    resetBoard();
+                }
+
+            })
+
+        })
+    </script>
+</body>
+
+</html>
