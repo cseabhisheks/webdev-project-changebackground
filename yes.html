@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .yes,
+    .no {
+        width: 200px;
+        height: 40px;
+        border: 2px solid black;
+        border-radius: 34px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+        margin: 34px;
+        font-size: 40px;
+        cursor: pointer;
+    }
+
+    .text {
+        font-size: 80px;
+    }
+    .option{
+        display: flex;
+        justify-content: space-evenly;
+        width: 70vw;
+        
+    }
+
+</style>
+
+<body>
+    <div class="container">
+        <div class="text">God , can i have khargosh</div>
+       <div class="option">
+        <div class="yes">Yes</div>
+        <div class="no">No</div>
+       </div>
+    </div>
+    <script>
+        let yes = document.body.querySelector(".yes");
+        let no = document.body.querySelector(".no");
+        let text=document.body.querySelector(".text");
+        yes.addEventListener("click",()=>{
+            text.innerText="yes sher,you desreve";
+        })
+        no.addEventListener("mouseover",()=>{
+            let x=(Math.random()*400)+200;
+            let y=(Math.random()*400)+100;
+            no.style.transform='translate('+x+'px,'+y+'px'+')';
+        })
+        no.addEventListener("click",()=>{
+            text.innerText="choose yes";
+        })
+
+    </script>
+</body>
+
+</html>
