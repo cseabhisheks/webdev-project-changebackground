@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 1000px;
+        height: 700px;
+        border: 2px solid black;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        box-shadow: inset -3px 2px 12px 8px gray;
+    }
+
+    .option {
+        display: flex;
+    }
+
+    .o {
+        margin: 50px;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        border: 4px solid black;
+        box-shadow: 12px 12px 12px gray;
+    }
+
+    .text {
+        width: 800px;
+        height: 50px;
+        border: 2px solid black;
+        box-shadow: 12px 12px 12px gray;
+    }
+
+    .one {
+        border: 2px solid black;
+        width: 100px;
+        height: 100px;
+    }
+
+    .x {
+        display: flex;
+        margin: 34px;
+    }
+
+    .one {
+        margin: 23px;
+    }
+
+    .a {
+        font-size: 34px;
+    }
+
+    .bw,
+    .bl,
+    .text,
+    .bt,
+    .tie {
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>STONE PAPER SCISSOR</h1>
+
+        <div class="option">
+            <div class="o">
+                <img id="w" class="stone" src="https://cdn.pixabay.com/photo/2015/01/19/12/30/rock-603965_1280.jpg"
+                    alt="">
+            </div>
+            <div class="o">
+                <img id="w" class="paper"
+                    src="https://cdn.pixabay.com/photo/2021/11/14/07/28/background-6793549_1280.jpg" alt="">
+            </div>
+            <div class="o">
+                <img id="w" class="scissor"
+                    src="https://cdn.pixabay.com/photo/2015/10/27/12/27/scissors-1008912_1280.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="text"></div>
+        <div class="x">
+            <div class="one">
+                <div class="a">Win</div>
+                <div class="bw"></div>
+            </div>
+
+            <div class="one">
+                <div class="a">Loose</div>
+                <div class="bl"></div>
+            </div>
+            <div class="one">
+                <div class="a">Total</div>
+                <div class="bt"></div>
+            </div>
+
+            <div class="one">
+                <div class="a">Tie</div>
+                <div class="tie"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let win = 0;
+        let loose = 0;
+        let total = 0;
+        let t=0;
+        const choice = ["stone", "paper", "scissor"];
+        let w = document.body.querySelectorAll("#w");
+        let bw = document.body.querySelector(".bw");
+        let bl = document.body.querySelector(".bl");
+        let bt = document.body.querySelector(".bt");
+        let tie = document.body.querySelector(".tie");
+        let text = document.body.querySelector(".text");
+        w.forEach((element) => {
+            element.addEventListener("click", () => {
+                let user = element.getAttribute("class");
+                let x = choice[parseInt(Math.random() * 3)];
+                console.log(x);
+                total++;
+                if (user == 'stone' && x == 'paper') {
+                    text.innerText = "you choose " + user + "  but loose as  computer choose " + x;
+                    loose++;
+                    bl.innerText = loose;
+                }
+                else if (user == 'paper' && x == 'scissor') {
+                    text.innerText = "you choose " + user + " but loose as  computer choose " + x;
+                    loose++;
+                    bl.innerText = loose;
+                }
+
+                else if (user == 'scissor' && x == 'stone') {
+                    text.innerText = "you choose " + user + " but  loose as  computer choose " + x;
+                    loose++;
+                    bl.innerText = loose;
+                }
+                else if (user == x) {
+                    text.innerText = "tie  as you both choose " + x;
+                    t++;
+                    tie.innerText = t;
+                }
+                else {
+                    text.innerText = "you win choose " + user + " as  computer choose " + x;
+                    win++;
+                    bw.innerText = win;
+                }
+                bt.innerText = total;
+            })
+
+        })
+    </script>
+</body>
+
+</html>
