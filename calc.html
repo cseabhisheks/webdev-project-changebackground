@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <style>
-    .container{
+    .container {
         width: 550px;
         height: 700px;
         display: flex;
@@ -17,12 +18,14 @@
         border: 2px solid black;
         border-radius: 23px;
     }
-    .display{
+
+    .display {
         width: 450px;
         height: 100px;
         border: 2px solid black;
     }
-    .b{
+
+    .b {
         width: 100px;
         height: 100px;
         border: 2px solid black;
@@ -30,15 +33,17 @@
         border-radius: 100%;
         margin: 5px;
     }
-    .display{
+
+    .display {
         font-size: 34px;
     }
 </style>
+
 <body>
     <div class="container">
         <div class="display"></div>
         <div class="row">
-            <button  class="b">(</button>
+            <button class="b">(</button>
             <button class="b">)</button>
             <button class="b">C</button>
             <button class="b">X</button>
@@ -69,47 +74,59 @@
         </div>
     </div>
     <script>
-        let b=document.body.querySelectorAll(".b");
-        let s=document.body.querySelectorAll("#s");
-        let dis=document.body.querySelector(".display");
-        let d="";
-        
-        function repeat(){
-            s.forEach((element)=>{
-            if(dis.innerText==element){
-                dis.innerText=element;
-            }
-        })
-        }
-     
-        b.forEach((element)=>{
-            element.addEventListener("click",()=>{
-                if(element.innerText=="C"){
-                    dis.innerText="";               
+        let b = document.body.querySelectorAll(".b");
+        let s = document.body.querySelectorAll("#s");
+        let dis = document.body.querySelector(".display");
+
+        b.forEach((element) => {
+            element.addEventListener("click", () => {
+                //clear whole
+                if (element.innerText == "C") {
+                    dis.innerText = "";
                 }
-                else if(element.innerText=="X"){
-                    dis.innerText=dis.innerText.slice(0,dis.innerText.length-1);                         
+                //remove last char
+                else if (element.innerText == "X") {
+                    dis.innerText = dis.innerText.slice(0, dis.innerText.length - 1);
                 }
-                
-                // //do not repeat  operator one after another
-                else if(element.innerText=='+'||element.innerText=='-'||element.innerText=='*'||element.innerText=='/'){
+
+                //before first number   only + - operator allowed like +2 allowed or -2 but not *2 and *3
+                else if (dis.innerText == "") {
+                    if (element.innerText == '+' || element.innerText == '-' || element.innerText == '*' || element.innerText == '/') {
+                        if (element.innerText == '+' || element.innerText == '-') {
+                            dis.innerText += element.innerText;
+                        }
+                    }
+                    else if (element.innerText != "=") {
+                        dis.innerText += element.innerText;
+                    }
+                }
+
+                // Entering text without repeating the operator
+                else if (element.innerText != "=") {
+                    const lastChar = dis.innerText.slice(dis.innerText.length -1);
+                    if ((lastChar === '+' || lastChar === '-' || lastChar === '*' || lastChar === '/') &&
+                        (element.innerText === '+' || element.innerText === '-' || element.innerText === '*' || element.innerText === '/')) {
+                        // Do nothing if last and current characters are both operators
+                        return;
+                    } else {
+                        dis.innerText += element.innerText;
+                    }
+                }
+
+                //evaluating
+                else if(element.innerText== "=") {
                     
-                }
-
-                //before first number   only + - operator allowed
-                else if(dis.innerText=""){
+                    try{
+                        dis.innerText = eval(dis.innerText);
+                    }
+                    catch{
+                        dis.innerText="error while inputting use bodmass rule";
+                    }
                   
-                }                
-                else if(element.innerText!="="){
-                    dis.innerText+=element.innerText
-
                 }
-                
-                else{
-                    dis.innerText=eval(dis.innerText);    
-                }                
             })
         })
     </script>
 </body>
+
 </html>
