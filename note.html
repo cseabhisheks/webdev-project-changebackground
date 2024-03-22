@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 1500px;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    .create {
+        width: 100px;
+        height: 20px;
+        background-color: yellow;
+        border: 2px solid black;
+        text-align: center;
+    }
+
+    .n {
+        margin: 15px;
+        width: 200px;
+        height: 200px;
+        background-color: yellow;
+        border: 2px solid black;
+        text-align: center;
+        background-image: url("https://cdn.pixabay.com/photo/2019/07/16/08/10/white-4341307_960_720.jpg");
+        background-size: cover;
+    }
+</style>
+
+<body>
+    <h1>Double click to delete that Notes</h1>
+    <div class="create">Add Note</div>
+    <div class="container"></div>
+
+    <script>
+        let z = document.body.querySelector(".container");
+        let t = 0;
+        let x = document.body.querySelector(".create");
+        x.addEventListener("click", () => {
+            t++;
+            x.innerText = "Notes :" + t;
+            let y = document.createElement("textarea");
+            y.className = "n"
+            z.append(y);
+
+            y.addEventListener("dblclick", () => {
+                y.remove();
+                t--;
+                x.innerText = "Notes :" + t;
+            })
+        })
+    </script>
+
+</body>
+
+</html>
