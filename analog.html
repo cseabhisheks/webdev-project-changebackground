@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .clock {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-image: url("https://th.bing.com/th/id/R.f3fb1cf91204e3766547d543aa9bb13b?rik=BpD7h8uD%2bn%2fmtw&riu=http%3a%2f%2fclipart-library.com%2fimages%2fdc45b4j9i.gif&ehk=60tT%2fk31SeoFmSxBIDZFSSF7mQr8NffIX4k8k9SvWmI%3d&risl=&pid=ImgRaw&r=0");
+            border: 3px solid black;
+            background-size: cover;
+            position: relative;
+        }
+
+
+        .sec {
+            width: 2px;
+            height: 240px;
+            border: 2px solid black;
+            position: absolute;
+            left: 50%;
+            transform-origin: 50% 100%; /* Set transform origin to the bottom center */
+        }
+
+        .min {
+            width: 4px;
+            height: 200px;
+            border: 3px solid rgb(210, 78, 78);
+            position: absolute;
+            left: 50%;
+            top: 8%;
+            transform-origin: 50% 100%; /* Set transform origin to the bottom center */
+        }
+
+        .hour {
+            width: 6px;
+            height: 100px;
+            border: 4px solid rgb(31, 203, 241);
+            position: absolute;
+            left: 50%;
+            top: 27%;
+            transform-origin: 50% 100%; /* Set transform origin to the bottom center */
+        }
+        .digital{
+            position: absolute;
+            top: 600px;
+            border: 2px solid black;
+            width: 100px;
+            height: 20px;
+            text-align: center;
+            transform: scale(3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hand sec"></div>
+        <div class="hand min"></div>
+        <div class="hand hour"></div>
+    </div>
+    <div class="digital"></div>
+    <script>
+        setInterval(() => {
+            let x = new Date();
+            let s = x.getSeconds();
+            let m = x.getMinutes();
+            let h = x.getHours();
+
+            let digital=document.body.querySelector(".digital");
+            digital.innerText=h+" : "+m+" : "+s;
+      
+
+            let sec = document.querySelector(".sec");
+            let min = document.querySelector(".min");
+            let hour = document.querySelector(".hour");
+
+            // Calculate degrees for each hand
+            let secDeg = (s / 60) * 360; // 60 seconds in a minute
+            let minDeg = ((m + s / 60) / 60) * 360; // 60 minutes in an hour
+            let hourDeg = ((h + m / 60) / 12) * 360; // 12 hours on a clock
+
+            // Apply rotation to each hand
+            sec.style.transform = `rotate(${secDeg}deg)`;
+            min.style.transform = `rotate(${minDeg}deg)`;
+            hour.style.transform = `rotate(${hourDeg}deg)`;
+        }, 1000);
+    </script>
+</body>
+
+</html>
