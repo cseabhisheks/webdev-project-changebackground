@@ -84,9 +84,9 @@
             let hour = document.querySelector(".hour");
 
             // Calculate degrees for each hand
-            let secDeg = (s / 60) * 360; // 60 seconds in a minute
-            let minDeg = ((m + s / 60) / 60) * 360; // 60 minutes in an hour
-            let hourDeg = ((h + m / 60) / 12) * 360; // 12 hours on a clock
+            let secDeg =s*6 // 60 seconds in a minute
+            let minDeg = m*6; // 60 minutes in an hour
+            let hourDeg = (h*30)+(m/2); // 12 hours on a clock
 
             // Apply rotation to each hand
             sec.style.transform = `rotate(${secDeg}deg)`;
